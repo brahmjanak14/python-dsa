@@ -43,11 +43,46 @@ class SLL:
             print(temp.data, end=' ')
             temp = temp.next
 
+    def delete_first(self):
+        if self.start is not None:
+            self.start = self.start.next
+    
+    def delete_last(self):
+        if self.start is None:
+            pass
+        elif self.start.next is None:
+            self.start = None
+        else:
+            temp = self.start
+            while temp.next.next is not None:
+                temp = temp.next
+            temp.next = None
+
+    def delete_item(self,data):
+        if self.start is None:
+            pass
+        elif self.start.next is None:
+            if self.start.data == data:
+                self.start = None
+        else:
+            temp = self.start
+            if temp.data == data:
+                self.start = temp.next
+            while temp.next is not None:
+                if temp.next.data == data:
+                    temp.next = temp.next.next
+                    break
+                temp = temp.next
+
 # driver code
 mylist = SLL()  
 mylist.insert_at_first(20)
 mylist.insert_at_first(10)
 mylist.insert_at_last(30)
 mylist.insert_after(mylist.search(20),88)
-
+mylist.print_list()
+# mylist.delete_item(88)
+# mylist.delete_first()
+mylist.delete_last()
+print()
 mylist.print_list()
