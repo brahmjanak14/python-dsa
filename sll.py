@@ -74,6 +74,23 @@ class SLL:
                     break
                 temp = temp.next
 
+    def __iter__(self):
+            return SLLIterator(self.start)
+
+class SLLIterator:
+    def __init__(self,start):
+        self.current = start
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if not self.current:
+            raise StopIteration
+        data = self.current.data
+        self.current = self.current.next
+        return data
+        
 # driver code
 mylist = SLL()  
 mylist.insert_at_first(20)
@@ -85,4 +102,7 @@ mylist.print_list()
 # mylist.delete_first()
 mylist.delete_last()
 print()
-mylist.print_list()
+for i in mylist:
+    print(i, end=' ')
+# mylist.print_list()
+
